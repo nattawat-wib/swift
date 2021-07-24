@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\nutella\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\nutella\\.nuget\\packages"
+    ]
+  }
+}

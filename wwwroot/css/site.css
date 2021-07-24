@@ -1,0 +1,19 @@
+﻿main {
+  min-height: calc(100vh - 450px);
+  margin-top: 90px;
+}
+
+#sidebar {
+  width: 75vw;
+  height: calc(100vh -  67px);
+  margin-left: -100vw;
+  transition: .3s ease;
+  position: fixed;
+  top: 67px;
+  z-index: 99;
+}
+
+#sidebar.show-sidebar {
+  margin-left: 0;
+}
+

@@ -1,0 +1,113 @@
+﻿@model UserAccount
+
+<main>
+    <!-- <form asp-action="RegisterAction">
+        <input asp-for="Username" name="Username" id="Username" required>
+        <input asp-for="Password" name="Password" id="Password" required>
+        <button class="btn btn-success" type="submit" placeholder="Register">
+    </form> -->
+    <h2 class="text-center mb-4">Register</h2>
+    <form style="max-width: 900px" class="mx-auto" autocomplete="off"> 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-outline mb-4">
+                    <input type="text" id="form1" class="form-control"  minlength="3"  required/>
+                    <label class="form-label" for="form1">firstname</label>
+                </div>    
+            </div>
+            <div class="col-md-6">            
+                <div class="form-outline mb-3">
+                    <input type="text" id="form1" class="form-control" minlength="3" required/>
+                    <label class="form-label" for="form1">lastname</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="form-outline mb-3">
+                    <input type="email" id="form1" class="form-control" required/>
+                    <label class="form-label" for="form1">Email Address</label>
+                </div>    
+            </div>
+        </div>    
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-outline mb-3">
+                    <input type="text" id="form1" class="form-control" required/>
+                    <label class="form-label" for="form1">Date of birth</label>
+                </div>     
+            </div>
+        </div>   
+
+
+        <br/>
+
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="form-outline mb-3">
+                    <input type="text" id="province" class="form-control" required/>
+                    <label class="form-label" for="province">Provice </label>
+                </div>    
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="form-outline mb-3">
+                    <input type="text" id="district" class="form-control" required/>
+                    <label class="form-label" for="district">District</label>
+                </div>    
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="form-outline mb-3">
+                    <input type="text" id="amphoe" class="form-control" required/>
+                    <label class="form-label" for="amphoe">Amphoe</label>
+                </div>    
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="form-outline mb-3">
+                    <input type="text" id="zipcode" class="form-control" required/>
+                    <label class="form-label" for="zipcode"> Zipcode </label>
+                </div>    
+            </div>
+        </div>    
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-outline mb-3">
+                    <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
+                    <label class="form-label" for="form1">Address</label>
+                </div>    
+            </div>
+        </div>              
+
+        <br/>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-outline mb-3">
+                    <input type="password" id="form1" class="form-control" required/>
+                    <label class="form-label" for="form1">Password</label>
+                </div>    
+            </div>
+            <div class="col-sm-6">
+                <div class="form-outline mb-3">
+                    <input type="password" id="form1" class="form-control" required/>
+                    <label class="form-label" for="form1">Password Confirm</label>
+                </div>    
+            </div>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="validationFormCheck1" required />
+            <label class="form-check-label" for="validationFormCheck1"> I agree to term & conditions </label>
+            <div class="invalid-feedback"> I agree to term & conditions </div>
+        </div>                 
+        <hr/>
+        <div class="d-flex align-items-center justify-content-end"> 
+            <button type="submit" class="btn btn-primary me-3"> SIGN UP </button>
+            <a href="#" class="btn btn-outline-info" data-mdb-toggle="modal" data-mdb-target="#loginModal"> SIGN IN</a>
+        </div>
+    </form>
+
+    <br>
+</main>
+
