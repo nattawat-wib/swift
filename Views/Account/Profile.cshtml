@@ -1,108 +1,146 @@
-﻿@model UserAccount
+﻿@{
 
-<main>
+
+
+
+
+
+
+    ViewData["Title"] = "Profile";
+}
+@model UserAccount
+@* @model IEnumerable<Swift.Models.UserAccount> *@
+
+<main style="max-width: 900px" class="mx-auto">
     <!-- <form asp-action="RegisterAction">
-        <input asp-for="Username" name="Username" id="Username" required>
-        <input asp-for="Password" name="Password" id="Password" required>
+        <input asp-for="Username" name="Username" id="Username"
+        <input asp-for="Password" name="Password" id="Password"
         <button class="btn btn-success" type="submit" placeholder="Register">
     </form> -->
     <h2 class="text-center mb-4"> Profile </h2>
-    <form style="max-width: 900px" class="mx-auto" autocomplete="off"> 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-outline mb-4">
-                    <input type="text" id="form1" class="form-control" value="John"/>
-                    <label class="form-label" for="form1">firstname</label>
-                </div>    
-            </div>
-            <div class="col-md-6">            
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" value="Petrucci"/>
-                    <label class="form-label" for="form1">lastname</label>
+
+
+    <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab2" data-mdb-toggle="pill" data-mdb-target="#pills-home2"
+                type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                Profile
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab2" data-mdb-toggle="pill" data-mdb-target="#pills-profile2"
+                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                Change Password
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent2">
+        <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
+            <form class="mx-auto" autocomplete="off">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input value="@Model.UserId" type="hidden" name="id" class="form-control" />
+                        <div class="form-outline mb-4">
+                            <input value="@Model.Username" type="text" class="form-control" disabled />
+                            <label class="form-label" for="form1">Username</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-outline mb-3">
+                            <input value="@Model.Email" type="email" name="email" class="form-control" />
+                            <label class="form-label" for="form1">Email Address</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-outline mb-3">
+                            <input value="@Model.Occupation" type="email" name="occupation" class="form-control" />
+                            <label class="form-label" for="form1"> Occupation </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-outline mb-3">
+                            <input value="@Model.Income" type="text" name="income" class="form-control" minlength="3" />
+                            <label class="form-label" for="form1">Income</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-outline mb-3">
+                            <input value="test" type="text" name="" class="form-control" />
+                            <label class="form-label" for="form1">Date of birth</label>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-outline mb-3">
+                            <input value="@Model.Facebook" type="text" name="facebook" class="form-control" />
+                            <label class="form-label" for="province"> Facebook </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-outline mb-3">
+                            <input value="@Model.Ig" type="text" name="ig" class="form-control" />
+                            <label class="form-label" for="district"> Instragram </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-outline mb-3">
+                            <input value="@Model.Telephone" type="text" name="telephone" class="form-control" />
+                            <label class="form-label" for="amphoe"> Telephone </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-outline mb-3">
+                            <textarea class="form-control" id="textAreaExample" rows="4"> @Model.Address </textarea>
+                            <label class="form-label" for="form1" name="address">Address</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="d-flex align-items-center justify-content-end">
+                    <button type="submit" class="update-user btn btn-primary me-3"> save change </button>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="pills-profile2" role="tabpanel" aria-labelledby="pills-profile-tab2">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-outline mb-3">
+                        <input value="" type="password" name="password" class="form-control" />
+                        <label class="form-label" for="form1">Old Password</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-outline mb-3">
+                        <input value="" type="password" name="newPassword" class="form-control" />
+                        <label class="form-label" for="form1">New Password</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-outline mb-3">
+                        <input value="" type="password" name="newPasswordConfirm" class="form-control" />
+                        <label class="form-label" for="form1">New Password Confirm</label>
+                    </div>
                 </div>
             </div>
+            <hr>
+            <div class="d-flex align-items-center justify-content-end">
+                <button type="button" class="change-password btn btn-primary me-3"> change password </button>
+            </div>
         </div>
-        
-        <div class="row">
-            <div class="col-12">
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" value="admin-swift@gmail.com"/>
-                    <label class="form-label" for="form1">Email Address</label>
-                </div>    
-            </div>
-        </div>    
-
-        <div class="row">
-            <div class="col-12">
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" value="10/02/2021"/>
-                    <label class="form-label" for="form1">Date of birth</label>
-                </div>     
-            </div>
-        </div>   
-
-
-        <br/>
-
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Provice </label>
-                </div>    
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">District</label>
-                </div>    
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Amphoe</label>
-                </div>    
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="text" id="form1" class="form-control" />
-                    <label class="form-label" for="form1"> Zipcode </label>
-                </div>    
-            </div>
-        </div>    
-
-        <div class="row">
-            <div class="col-12">
-                <div class="form-outline mb-3">
-                    <textarea class="form-control" id="textAreaExample" rows="4"></textarea>
-                    <label class="form-label" for="form1">Address</label>
-                </div>    
-            </div>
-        </div>              
-
-        <br/>
-<!-- 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="password" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Password</label>
-                </div>    
-            </div>
-            <div class="col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="password" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Password Confirm</label>
-                </div>    
-            </div>
-        </div>          -->
-        <hr/>
-        <div class="d-flex align-items-center justify-content-end"> 
-            <button type="submit" class="btn btn-primary me-3"> SUBMIT </button>
-            <!-- <a href="#" class="btn btn-outline-info" data-mdb-toggle="modal" data-mdb-target="#loginModal"> SIGN IN </a> -->
-        </div>
-    </form>
-
-    <br>
+    </div>
 </main>
-

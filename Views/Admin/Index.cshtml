@@ -1,28 +1,148 @@
-﻿@model IEnumerable<Swift.Models.UserAccount>
-<main> 
-    <h2 class="text-center">Profile</h2>
+﻿@{
+    ViewData["Title"] = "Admin";
+}
+@model IEnumerable<Swift.Models.UserAccount>
+<main>
+    <h2 class="text-center"> All users </h2>
     <div class="table-responsive">
-        <table class="table table-striped table-hover" >
-            <tr class="bg-info text-light h5">
-                <th>Id</th>
-                <th>Name</th>
-                <th>Action</th>
+        <table class="table table-striped table-hover">
+            <tr class="bg-info text-light h6 fw-bold">
+                <td>Id</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Occupation</td>
+                <td>Income</td>
+                <td>Telephone</td>
+                <td>Address</td>
+                <td>Action</td>
             </tr>
-            
-            @foreach (var item in Model) {
+
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <td class="fw-bold w-25">@item.UserId</td>
-                    <td class="fw-bold w-100">@item.Username</td>
+                    <td class="fw-semi-bold w-25">@item.UserId</td>
+                    <td class="fw-semi-bold w-100">@item.Username</td>
+                    <td class="fw-semi-bold w-100">@item.Email</td>
+                    <td class="fw-semi-bold w-100">@item.Occupation</td>
+                    <td class="fw-semi-bold w-100">@item.Income</td>
+                    <td class="fw-semi-bold w-100">@item.Telephone</td>
+                    <td class="fw-semi-bold w-100">@item.Address</td>
                     <td class=" d-flex flex-nowrap text-nowrap">
-                        <button class="btn btn-success me-2"> <i class="fas fa-edit"></i> EDIT </button>
-                        <button class="js-delete-user btn btn-danger" data-user_id="@item.UserId" data-user_name="@item.Username"> <i class="far fa-trash-alt"></i> DELETE </button>
+                        <button class="btn btn-success me-2 edit-user" 
+                            data-id="@item.UserId" 
+                            data-name="@item.Username" 
+                            data-email="@item.Email" 
+                            data-occupation="@item.Occupation" 
+                            data-income="@item.Income" 
+                            data-telephone="@item.Telephone"
+                            data-address="@item.Address" 
+                            data-facebook="@item.Facebook" 
+                            data-ig="@item.Ig" 
+                            data-address="@item.Address"> <i
+                            class="fas fa-edit"></i> EDIT </button>
+                        <button class="delete-user btn btn-danger" data-user_id="@item.UserId"
+                        data-user_name="@item.Username"> <i class="far fa-trash-alt"></i> DELETE </button>
                     </td>
                 </tr>
             }
         </table>
     </div>
-    <div class="text-end"> 
+    <div class="text-end">
         <a class="btn btn-primary" asp-action="ExportToExcel">Export</a>
     </div>
     <br>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="edit_user_modal" tabindex="-1" aria-labelledby="edit_user_modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title edit_user_modalLabel"> edit user </h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form style="max-width: 900px" class="mx-auto" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-outline mb-4">
+                                <input type="hidden" name="id"/>
+                                <input value="test" type="text" name="username" class="form-control" minlength="3" required disabled />
+                                @* <label class="form-label" for="form1">Username</label> *@
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="email" name="email" class="form-control" required />
+                                <label class="form-label" for="form1">Email Address</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="text" name="occupation" class="form-control" required />
+                                <label class="form-label" for="form1"> Occupation </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="number" name="income" class="form-control" minlength="3"
+                                    required />
+                                <label class="form-label" for="form1">Income</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="text" name="" class="form-control" required />
+                                <label class="form-label" for="form1">Date of birth</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="text" name="facebook" class="form-control" required />
+                                <label class="form-label" for="province"> Facebook </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="text" name="ig" class="form-control" required />
+                                <label class="form-label" for="district"> Instragram </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-outline mb-3">
+                                <input value="test" type="text" name="telephone" class="form-control" required />
+                                <label class="form-label" for="amphoe"> Telephone </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-outline mb-3">
+                                <textarea class="form-control" name="address" rows="4"> test </textarea>
+                                <label class="form-label" for="form1">Address</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="update-user btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

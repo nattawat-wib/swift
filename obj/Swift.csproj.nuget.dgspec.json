@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nutella\\Downloads\\swift-main\\Swift.csproj": {}
+    "C:\\Users\\nutella\\Downloads\\swift-main-dev\\Swift.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nutella\\Downloads\\swift-main\\Swift.csproj": {
+    "C:\\Users\\nutella\\Downloads\\swift-main-dev\\Swift.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nutella\\Downloads\\swift-main\\Swift.csproj",
+        "projectUniqueName": "C:\\Users\\nutella\\Downloads\\swift-main-dev\\Swift.csproj",
         "projectName": "Swift",
-        "projectPath": "C:\\Users\\nutella\\Downloads\\swift-main\\Swift.csproj",
+        "projectPath": "C:\\Users\\nutella\\Downloads\\swift-main-dev\\Swift.csproj",
         "packagesPath": "C:\\Users\\nutella\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nutella\\Downloads\\swift-main\\obj\\",
+        "outputPath": "C:\\Users\\nutella\\Downloads\\swift-main-dev\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nutella\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,13 +38,25 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
             "ClosedXML": {
               "target": "Package",
               "version": "[0.95.4, )"
             },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[5.0.6, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
