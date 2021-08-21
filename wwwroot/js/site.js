@@ -15,9 +15,9 @@
                 title: 'Register successfully',
                 confirmButtonText: 'Go to home page',
                 confirmButtonColor: '#39c0ed',
-                
+
             })
-            .then(() => $('#form_register').submit())
+                .then(() => $('#form_register').submit())
         }
     })
 
@@ -134,10 +134,10 @@
                         confirmButtonText: 'ปิด',
                         confirmButtonColor: '#39c0ed',
                     })
-                    .then(() => { if (resp.status === "success") location.reload() })
+                        .then(() => { if (resp.status === "success") location.reload() })
                 })
         }
-        
+
     })
 
     $('.change-password').click(() => {
@@ -196,15 +196,15 @@
         //! สำหรับตอนสมัครเท่านั้น 
         const username = $('[data-validate-pk]');
 
-        if(username.length > 0) {
+        if (username.length > 0) {
             //! username ห้ามต่ำกว่า 3 และ ไม่เกิน 12
             if (username.val() && username.val().length < 3 || username.val().length > 12) result = respError(username, 'username ต้องมีความยาวไม่ต่ำกว่า 3 และไม่เกิน 12 ตัวอักษร')
-            
+
             //! check pk  
             await $.post('https://localhost:4001/Account/IsUsernameExist', { value: username.val() })
-            .then(resp => {
-                if (!resp) result = respError(username, 'มี username นี้ในระบบแล้ว')
-            })
+                .then(resp => {
+                    if (!resp) result = respError(username, 'มี username นี้ในระบบแล้ว')
+                })
         }
 
         //! ตรวจสอบฟอร์มอีเมล์
@@ -213,7 +213,7 @@
         if (email.val() && !isEmailForm.test(email.val())) result = respError(email, 'รูปแบบอีเมล์ไม่ถูกต้อง')
 
         const tel = $('[name="telephone"]')
-        if(tel.val() && tel.val().length < 10) result = respError(tel, 'รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง')
+        if (tel.val() && tel.val().length != 10) result = respError(tel, 'รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง')
 
         //! ยืนยันรหัสผ่านไม่ตรง
         const pass = $('[name="password"]')
@@ -252,7 +252,8 @@
 
     $(".datepicker").datepicker({
         maxDate: 0,
-        dateFormat: 'dd/mm/yy'
+        dateFormat: 'dd/mm/yy',
+        changeYear: true
     });
 
     //! check pk
@@ -267,5 +268,7 @@
                 }
             })
     })
+
+
 })
 

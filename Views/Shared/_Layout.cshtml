@@ -7,10 +7,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Swift</title>
-    <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> -->
 
     <!-- jquery UI -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" /> 
+    <link href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" /> 
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" /> 
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
@@ -20,8 +20,7 @@
     <link rel="stylesheet" href="~/jquery-Thailand/jquery.Thailand.js/dist/jquery.Thailand.min.css" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css" rel="stylesheet" /> 
-    
-    @* <link rel="stylesheet" href="~/Date-Time-Picker-Bootstrap-4/build/css/bootstrap-datetimepicker.min.css" /> *@
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -190,6 +189,7 @@
             <small> &copy; 2021 - Swift - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> </small>
         </div>
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -201,9 +201,6 @@
    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-
-    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> *@
-    @* <script src="~/Date-Time-Picker-Bootstrap-4/build/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script> *@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
