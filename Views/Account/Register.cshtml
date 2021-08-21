@@ -1,28 +1,32 @@
 ﻿@{
-    ViewData["Title"] = "Register"; 
+    ViewData["Title"] = "Register";
 }
 @model UserAccount
+@{
+    string[] jobList = { "Computer Scientist","IT Professional","UX Designer & UI Developer","Frontend Developer","Backend Developer","SQL Developer","Web Designer","Web Developer","Help Desk Worker/Desktop Support","Software Engineer","Data Entry","DevOps Engineer","Computer Programmer","Network Administrator","Information Security Analyst","Artificial Intelligence Engineer","Cloud Architect","IT Manager","Technical Specialist","Application Developer","Chief Technology Officer (CTO)","Chief Information Officer (CIO)","Marketing Specialist","Marketing Manager","Marketing Director","Graphic Designer","Marketing Research Analyst","Marketing Communications Manager","Marketing Consultant","Product Manager","Public Relations","Social Media Assistant","Brand Manager","SEO Manager","Content Marketing Manager","Copywriter","Media Buyer","Digital Marketing Manager","eCommerce Marketing Specialist","Brand Strategist","Vice President of Marketing","Media Relations Coordinator","Administrative Assistant","Receptionist","Office Manager","Auditing Clerk","Bookkeeper","Account Executive","Branch Manager","Business Manager","Quality Control Coordinator","Administrative Manager","Chief Executive Officer","Business Analyst","Risk Manager","Human Resources","Office Assistant","Secretary","Office Clerk","File Clerk","Account Collector","Administrative Specialist","Executive Assistant","Program Administrator","Program Manager","Administrative Analyst","Data Entry","Team Leader","Manager","Assistant Manager","Executive","Director","Coordinator","Administrator","Controller","Officer","Organizer","Supervisor","Superintendent","Head","Overseer","Chief","Foreman","Controller","Principal","President","Lead" };
 
+}
 <main>
     <!-- <form asp-action="RegisterAction">
-        <input asp-for="Username" name="Username" id="Username" required>
-        <input asp-for="Password" name="Password" id="Password" required>
+        <input asp-for="Username" name="Username" id="Username">
+        <input asp-for="Password" name="Password" id="Password">
         <button class="btn btn-success" type="submit" placeholder="Register">
     </form> -->
     <button id="testAPI"> test API </button>
     <h2 class="text-center mb-4">Register</h2>
-    <form id="form_register" style="max-width: 900px" class="mx-auto" autocomplete="off" asp-controller="Account"
-        method="post" asp-action="RegisterAction">
-        <div class="row">
+    <form id="form_register" style="max-width: 900px" class="mx-auto" autocomplete="off"
+        asp-controller="Account" method="post" asp-action="RegisterAction">
+        <div class="row row-space">
             <div class="col-md-6">
-                <div class="form-outline mb-4">
-                    <input type="text" name="Username" class="form-control" />
+                <div class="form-outline">
+                    <input type="text" name="username" data-validate-pk class="form-control" />
                     <label class="form-label">Username</label>
                 </div>
+
             </div>
             <div class="col-md-6">
-                <div class="form-outline mb-3">
-                    <input type="email" name="Email" class="form-control" required />
+                <div class="form-outline">
+                    <input type="email" name="email" class="form-control" />
                     <label class="form-label">Email Address</label>
                 </div>
             </div>
@@ -30,55 +34,70 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-outline mb-3">
-                    <input type="text" name="Occupation" class="form-control" required />
+                @* <input type="text" name="Occupation" class="form-control" />
+                    <label class="form-label"> Occupation </label> *@
+                <select class="form-select text-dark" name="occupation">
+                    <option selected disabled value=""> ---- select your occupation ---- </option>
+                    @foreach (var job in jobList)
+                    {
+                        <option class="text-dark" value=@job> Occupation : @job </option>
+                    }
                     <label class="form-label"> Occupation </label>
-                </div>
+                </select>
             </div>
             <div class="col-md-6">
-                <div class="form-outline mb-3">
-                    <input type="number" name="Income" class="form-control" minlength="3" required />
-                    <label class="form-label">Income</label>
-                </div>
+                <select class="form-select text-dark" name="income">
+                    <option selected disabled value=""> ---- select your income ---- </option>
+                    @{
+                        var income = 0;
+                    }
+
+                    @for (var i = 0; i < 40; i++)
+                    {
+                        income = income + 5000;
+                        <option class="text-dark" value=@income> income : @income </option>
+                    }
+                </select>
             </div>
         </div>
 
-        <div class="row">
+        <br>
+        <br>
+
+        <div class="row row-space">
             <div class="col-12">
-                <div class="form-outline mb-3">
-                    <input type="text" name="DateOfBirth" class="form-control" required />
+                <div class="form-outline">
+                    <input type="text" name="dateOfBirth" class="datepicker form-control" />
                     <label class="form-label">Date of birth</label>
                 </div>
             </div>
         </div>
 
-        <br />
-
-        <div class="row">
+        <div class="row row-space">
             <div class="col-md-4">
-                <div class="form-outline mb-3">
-                    <input type="text" name="Facebook" class="form-control" required />
+                <div class="form-outline">
+                    <input type="text" name="facebook" class="form-control" />
                     <label class="form-label" for="province"> Facebook </label>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-outline mb-3">
-                    <input type="text" name="Ig" class="form-control" required />
+                <div class="form-outline">
+                    <input type="text" name="ig" class="form-control" />
                     <label class="form-label" for="district"> Instragram </label>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-outline mb-3">
-                    <input type="text" name="Telephone" class="form-control" required />
+                <div class="form-outline">
+                    <input type="number" name="telephone" class="form-control" />
                     <label class="form-label" for="amphoe"> Telephone </label>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row my-3">
             <div class="col-12">
-                <div class="form-outline mb-3">
-                    <textarea class="form-control" name="Address" rows="4"></textarea>
+                <div class="form-outline">
+                    <textarea class="form-control" name="address" rows="4"></textarea>
                     <label class="form-label">Address</label>
                 </div>
             </div>
@@ -86,25 +105,25 @@
 
         <br />
 
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="password" name="Password" class="form-control" required />
+                <div class="form-outline">
+                    <input type="password" name="password" class="form-control" />
                     <label class="form-label">Password</label>
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="form-outline mb-3">
-                    <input type="password" class="form-control" required />
+                <div class="form-outline">
+                    <input type="password" name="passwordConfirm" class="form-control" />
                     <label class="form-label">Password Confirm</label>
                 </div>
             </div>
         </div>
-        <div class="form-check mb-3">
-            <input type="checkbox" class="form-check-input" id="condition" required />
+        @* <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="condition" />
             <label class="form-check-label" for="validationFormCheck1"> I agree to term & conditions </label>
             <div class="invalid-feedback"> I agree to term & conditions </div>
-        </div>
+            </div> *@
         <hr />
         <div class="d-flex align-items-center justify-content-end">
             <button id="register_btn" type="button" class="btn btn-primary me-3"> SIGN UP </button>

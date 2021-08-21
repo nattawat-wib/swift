@@ -32,6 +32,7 @@ namespace Swift.Controllers
                 Email = userAccount.Email,
                 Occupation = userAccount.Occupation,
                 Income = userAccount.Income,
+                DateOfBirth = userAccount.DateOfBirth,
                 Telephone = userAccount.Telephone,
                 Address = userAccount.Address,
                 Facebook = userAccount.Facebook,
@@ -118,7 +119,7 @@ namespace Swift.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditUser(int id, string email, string occupation, int income, string telephone, string address, string facebook, string ig)
+        public JsonResult EditUser(int id, string email, string occupation, int income, string telephone, string address, string facebook, string ig, string dateOfBirth)
         {
             JsonRespons jsonRespons = new JsonRespons();
             Console.WriteLine(occupation);
@@ -139,6 +140,7 @@ namespace Swift.Controllers
             user.Telephone = telephone;
             user.Address = address;
             user.Facebook = facebook;
+            user.DateOfBirth = dateOfBirth;
             user.Ig = ig;
 
             _context.SaveChanges();
@@ -157,7 +159,12 @@ namespace Swift.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+
             UserAccount currentUser = _context.Users.Where(u => u.Username == sessionUsername).FirstOrDefault();
+            Console.WriteLine(currentUser.Address);
+            Console.WriteLine(currentUser.Username);
+            Console.WriteLine(currentUser.UserId);
+
             return View(currentUser);
         }
 
@@ -166,12 +173,19 @@ namespace Swift.Controllers
 
             JsonRespons jsonRespons = new JsonRespons();
 
+            if (password == null || newPassword == null || newPasswordConfirm == null)
+            {
+                jsonRespons.Status = "error";
+                jsonRespons.Msg = "กรุณากรอกรหัสผ่านให้ครบ";
+                return Json(jsonRespons);
+            }
+
             string sessionUsername = HttpContext.Session.GetString("username");
             UserAccount user = _context.Users.Where(u => u.Username == sessionUsername).FirstOrDefault();
 
-            Console.WriteLine(BCrypt.Net.BCrypt.HashPassword(newPassword));
-            Console.WriteLine(user.Password);
-            Console.WriteLine(BCrypt.Net.BCrypt.Verify(password, user.Password));
+            // Console.WriteLine(BCrypt.Net.BCrypt.HashPassword(newPassword));
+            // Console.WriteLine(user.Password);
+            // Console.WriteLine(BCrypt.Net.BCrypt.Verify(password, user.Password));
 
             if ((BCrypt.Net.BCrypt.Verify(password, user.Password)) == false)
             {
@@ -200,6 +214,21 @@ namespace Swift.Controllers
             jsonRespons.Msg = "เปลี่ยนรหัสผ่านสำเร็จ กรุณาเข้าสู่ระบบอีกครั้ง";
             Logout();
             return Json(jsonRespons);
+        }
+
+        public Boolean IsUsernameExist(string value)
+        {
+            UserAccount existValue = _context.Users.Where(u => u.Username == value).FirstOrDefault();
+            if (existValue != null)
+            {
+                Console.WriteLine(existValue.Username);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

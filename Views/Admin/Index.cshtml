@@ -1,6 +1,12 @@
 ﻿@{
+
     ViewData["Title"] = "Admin";
 }
+@{
+    string[] jobList = { "Computer Scientist","IT Professional","UX Designer & UI Developer","Frontend Developer","Backend Developer","SQL Developer","Web Designer","Web Developer","Help Desk Worker/Desktop Support","Software Engineer","Data Entry","DevOps Engineer","Computer Programmer","Network Administrator","Information Security Analyst","Artificial Intelligence Engineer","Cloud Architect","IT Manager","Technical Specialist","Application Developer","Chief Technology Officer (CTO)","Chief Information Officer (CIO)","Marketing Specialist","Marketing Manager","Marketing Director","Graphic Designer","Marketing Research Analyst","Marketing Communications Manager","Marketing Consultant","Product Manager","Public Relations","Social Media Assistant","Brand Manager","SEO Manager","Content Marketing Manager","Copywriter","Media Buyer","Digital Marketing Manager","eCommerce Marketing Specialist","Brand Strategist","Vice President of Marketing","Media Relations Coordinator","Administrative Assistant","Receptionist","Office Manager","Auditing Clerk","Bookkeeper","Account Executive","Branch Manager","Business Manager","Quality Control Coordinator","Administrative Manager","Chief Executive Officer","Business Analyst","Risk Manager","Human Resources","Office Assistant","Secretary","Office Clerk","File Clerk","Account Collector","Administrative Specialist","Executive Assistant","Program Administrator","Program Manager","Administrative Analyst","Data Entry","Team Leader","Manager","Assistant Manager","Executive","Director","Coordinator","Administrator","Controller","Officer","Organizer","Supervisor","Superintendent","Head","Overseer","Chief","Foreman","Controller","Principal","President","Lead" };
+
+}
+
 @model IEnumerable<Swift.Models.UserAccount>
 <main>
     <h2 class="text-center"> All users </h2>
@@ -12,38 +18,32 @@
                 <td>Email</td>
                 <td>Occupation</td>
                 <td>Income</td>
-                <td>Telephone</td>
+                <td>Date Of Birth</td>
                 <td>Address</td>
                 <td>Action</td>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="text-nowrap">
                     <td class="fw-semi-bold w-25">@item.UserId</td>
                     <td class="fw-semi-bold w-100">@item.Username</td>
                     <td class="fw-semi-bold w-100">@item.Email</td>
                     <td class="fw-semi-bold w-100">@item.Occupation</td>
                     <td class="fw-semi-bold w-100">@item.Income</td>
-                    <td class="fw-semi-bold w-100">@item.Telephone</td>
+                    <td class="fw-semi-bold w-100">@item.DateOfBirth</td>
                     <td class="fw-semi-bold w-100">@item.Address</td>
                     <td class=" d-flex flex-nowrap text-nowrap">
-                        <button class="btn btn-success me-2 edit-user" 
-                            data-id="@item.UserId" 
-                            data-name="@item.Username" 
-                            data-email="@item.Email" 
-                            data-occupation="@item.Occupation" 
-                            data-income="@item.Income" 
-                            data-telephone="@item.Telephone"
-                            data-address="@item.Address" 
-                            data-facebook="@item.Facebook" 
-                            data-ig="@item.Ig" 
-                            data-address="@item.Address"> <i
+                        <button class="btn btn-success me-2 edit-user" data-id="@item.UserId" data-name="@item.Username"
+                        data-email="@item.Email" data-occupation="@item.Occupation" data-income="@item.Income"
+                        data-telephone="@item.Telephone" data-dateOfBirth="@item.DateOfBirth"
+                        data-facebook="@item.Facebook" data-ig="@item.Ig" data-address="@item.Address"> <i
                             class="fas fa-edit"></i> EDIT </button>
                         <button class="delete-user btn btn-danger" data-user_id="@item.UserId"
                         data-user_name="@item.Username"> <i class="far fa-trash-alt"></i> DELETE </button>
                     </td>
                 </tr>
+
             }
         </table>
     </div>
@@ -63,42 +63,61 @@
             </div>
             <div class="modal-body">
                 <form style="max-width: 900px" class="mx-auto" autocomplete="off">
-                    <div class="row">
+                    <div class="row row-space">
                         <div class="col-md-6">
-                            <div class="form-outline mb-4">
-                                <input type="hidden" name="id"/>
-                                <input value="test" type="text" name="username" class="form-control" minlength="3" required disabled />
+                            <div class="form-outline">
+                                <input type="hidden" name="id" />
+                                <input value="test" type="text" name="username" class="form-control" disabled />
                                 @* <label class="form-label" for="form1">Username</label> *@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="email" name="email" class="form-control" required />
+                            <div class="form-outline">
+                                <input value="test" type="email" name="email" class="form-control" />
                                 <label class="form-label" for="form1">Email Address</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row row-space">
                         <div class="col-md-6">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="text" name="occupation" class="form-control" required />
+                            @* <div class="form-outline">
+                                <input value="test" type="text" name="occupation" class="form-control" />
                                 <label class="form-label" for="form1"> Occupation </label>
-                            </div>
+                                </div> *@
+                            <select class="form-select text-dark" name="occupation">
+                                <option selected disabled value=""> ---- select your occupation ---- </option>
+                                @foreach (var job in jobList)
+                                {
+                                    <option class="text-dark" value=@job> Occupation : @job </option>
+                                }
+                                <label class="form-label"> Occupation </label>
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="number" name="income" class="form-control" minlength="3"
-                                    required />
+                            @* <div class="form-outline">
+                                <input value="test" type="number" name="income" class="form-control" minlength="3" />
                                 <label class="form-label" for="form1">Income</label>
-                            </div>
+                            </div> *@
+                            <select class="form-select text-dark" name="income">
+                                <option selected disabled value=""> ---- select your income ---- </option>
+                                @{
+                                    var income = 0;
+                                }
+
+                                @for (var i = 0; i < 40; i++)
+                                {
+                                    income = income + 5000;
+                                    <option class="text-dark" value=@income> income : @income </option>
+                                }
+                            </select>                            
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row row-space">
                         <div class="col-12">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="text" name="" class="form-control" required />
+                            <div class="form-outline">
+                                <input value="test" type="text" name="dateOfBirth" class="form-control datepicker" />
                                 <label class="form-label" for="form1">Date of birth</label>
                             </div>
                         </div>
@@ -106,30 +125,30 @@
 
                     <br />
 
-                    <div class="row">
+                    <div class="row row-space">
                         <div class="col-md-4">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="text" name="facebook" class="form-control" required />
+                            <div class="form-outline">
+                                <input value="test" type="text" name="facebook" class="form-control" />
                                 <label class="form-label" for="province"> Facebook </label>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="text" name="ig" class="form-control" required />
+                            <div class="form-outline">
+                                <input value="test" type="text" name="ig" class="form-control" />
                                 <label class="form-label" for="district"> Instragram </label>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="form-outline mb-3">
-                                <input value="test" type="text" name="telephone" class="form-control" required />
+                            <div class="form-outline">
+                                <input value="test" type="number" name="telephone" class="form-control" />
                                 <label class="form-label" for="amphoe"> Telephone </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row row-space">
                         <div class="col-12">
-                            <div class="form-outline mb-3">
+                            <div class="form-outline">
                                 <textarea class="form-control" name="address" rows="4"> test </textarea>
                                 <label class="form-label" for="form1">Address</label>
                             </div>

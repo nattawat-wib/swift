@@ -1,26 +1,17 @@
 ﻿@{
 
-
-
-
-
-
-
     ViewData["Title"] = "Profile";
 }
 @model UserAccount
-@* @model IEnumerable<Swift.Models.UserAccount> *@
+@{
+    string[] jobList = { "Computer Scientist","IT Professional","UX Designer & UI Developer","Frontend Developer","Backend Developer","SQL Developer","Web Designer","Web Developer","Help Desk Worker/Desktop Support","Software Engineer","Data Entry","DevOps Engineer","Computer Programmer","Network Administrator","Information Security Analyst","Artificial Intelligence Engineer","Cloud Architect","IT Manager","Technical Specialist","Application Developer","Chief Technology Officer (CTO)","Chief Information Officer (CIO)","Marketing Specialist","Marketing Manager","Marketing Director","Graphic Designer","Marketing Research Analyst","Marketing Communications Manager","Marketing Consultant","Product Manager","Public Relations","Social Media Assistant","Brand Manager","SEO Manager","Content Marketing Manager","Copywriter","Media Buyer","Digital Marketing Manager","eCommerce Marketing Specialist","Brand Strategist","Vice President of Marketing","Media Relations Coordinator","Administrative Assistant","Receptionist","Office Manager","Auditing Clerk","Bookkeeper","Account Executive","Branch Manager","Business Manager","Quality Control Coordinator","Administrative Manager","Chief Executive Officer","Business Analyst","Risk Manager","Human Resources","Office Assistant","Secretary","Office Clerk","File Clerk","Account Collector","Administrative Specialist","Executive Assistant","Program Administrator","Program Manager","Administrative Analyst","Data Entry","Team Leader","Manager","Assistant Manager","Executive","Director","Coordinator","Administrator","Controller","Officer","Organizer","Supervisor","Superintendent","Head","Overseer","Chief","Foreman","Controller","Principal","President","Lead" };
+
+}
 
 <main style="max-width: 900px" class="mx-auto">
-    <!-- <form asp-action="RegisterAction">
-        <input asp-for="Username" name="Username" id="Username"
-        <input asp-for="Password" name="Password" id="Password"
-        <button class="btn btn-success" type="submit" placeholder="Register">
-    </form> -->
-    <h2 class="text-center mb-4"> Profile </h2>
+    <h2 class="text-center"> Profile </h2>
 
-
-    <ul class="nav nav-pills mb-3" id="pills-tab2" role="tablist">
+    <ul class="nav nav-pills" id="pills-tab2" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-home-tab2" data-mdb-toggle="pill" data-mdb-target="#pills-home2"
                 type="button" role="tab" aria-controls="pills-home" aria-selected="true">
@@ -34,20 +25,24 @@
             </button>
         </li>
     </ul>
+
+    <br>
+    <br>
+
     <div class="tab-content" id="pills-tabContent2">
         <div class="tab-pane fade show active" id="pills-home2" role="tabpanel" aria-labelledby="pills-home-tab2">
             <form class="mx-auto" autocomplete="off">
-                <div class="row">
+                <div class="row row-space">
                     <div class="col-md-6">
                         <input value="@Model.UserId" type="hidden" name="id" class="form-control" />
-                        <div class="form-outline mb-4">
+                        <div class="form-outline">
                             <input value="@Model.Username" type="text" class="form-control" disabled />
                             <label class="form-label" for="form1">Username</label>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-outline mb-3">
-                            <input value="@Model.Email" type="email" name="email" class="form-control" />
+                        <div class="form-outline">
+                            <input value="@Model.Email" type="text" name="email" class="form-control" />
                             <label class="form-label" for="form1">Email Address</label>
                         </div>
                     </div>
@@ -55,56 +50,90 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-outline mb-3">
-                            <input value="@Model.Occupation" type="email" name="occupation" class="form-control" />
+                        @* <div class="form-outline">
+                            <input value="@Model.Occupation" type="text" name="occupation" class="form-control" />
                             <label class="form-label" for="form1"> Occupation </label>
-                        </div>
+                        </div> *@
+                        <select class="form-select text-dark mt-3" name="occupation">
+                            <option selected disabled value=""> ---- select your occupation ---- </option>
+                            @foreach (var job in jobList)
+                            {
+                                @if(@job == @Model.Occupation)
+                                {
+                                    <option class="text-dark" value=@job selected> Occupation : @job </option>
+                                }
+                                <option class="text-dark" value=@job> Occupation : @job </option>
+                            }
+                            <label class="form-label"> Occupation </label>
+                        </select>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-outline mb-3">
+                        @* <div class="form-outline">
                             <input value="@Model.Income" type="text" name="income" class="form-control" minlength="3" />
                             <label class="form-label" for="form1">Income</label>
-                        </div>
+                            </div> *@
+                        <select class="form-select text-dark mt-3" name="income">
+                            <option selected disabled value=""> ---- select your income ---- </option>
+                            @{
+
+                                var income = 0;
+                            }
+                            @for (var i = 0; i < 40; i++)
+                            {
+                                income = income + 5000;
+                                @if(@income == @Model.Income)
+                                {
+                                    <option class="text-dark" value=@income selected> income : @income </option>
+                                }
+                                <option class="text-dark" value=@income> income : @income </option>
+
+                            }
+                        </select>
                     </div>
                 </div>
 
+                <br>
+                <br>
+
                 <div class="row">
                     <div class="col-12">
-                        <div class="form-outline mb-3">
-                            <input value="test" type="text" name="" class="form-control" />
-                            <label class="form-label" for="form1">Date of birth</label>
+                        <div class="form-outline">
+                            <input value="@Model.DateOfBirth" type="text" name="dateOfBirth"
+                                class="form-control datepicker" />
+                            <label class="form-label datepicker" for="form1">Date of birth</label>
                         </div>
                     </div>
                 </div>
 
                 <br />
+                <br />
 
-                <div class="row">
+                <div class="row row-space">
                     <div class="col-md-4">
-                        <div class="form-outline mb-3">
+                        <div class="form-outline">
                             <input value="@Model.Facebook" type="text" name="facebook" class="form-control" />
                             <label class="form-label" for="province"> Facebook </label>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-outline mb-3">
+                        <div class="form-outline">
                             <input value="@Model.Ig" type="text" name="ig" class="form-control" />
                             <label class="form-label" for="district"> Instragram </label>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-outline mb-3">
-                            <input value="@Model.Telephone" type="text" name="telephone" class="form-control" />
+                        <div class="form-outline">
+                            <input value="@Model.Telephone" type="number" name="telephone" class="form-control" />
                             <label class="form-label" for="amphoe"> Telephone </label>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row row-space">
                     <div class="col-12">
-                        <div class="form-outline mb-3">
-                            <textarea class="form-control" id="textAreaExample" rows="4"> @Model.Address </textarea>
-                            <label class="form-label" for="form1" name="address">Address</label>
+                        <div class="form-outline">
+                            <textarea class="form-control" rows="4" name="address"> @Model.Address </textarea>
+                            <label class="form-label" for="form1">Address</label>
                         </div>
                     </div>
                 </div>
@@ -112,27 +141,27 @@
                 <hr />
 
                 <div class="d-flex align-items-center justify-content-end">
-                    <button type="submit" class="update-user btn btn-primary me-3"> save change </button>
+                    <button type="button" class="update-user btn btn-primary me-3"> save change </button>
                 </div>
             </form>
         </div>
         <div class="tab-pane fade" id="pills-profile2" role="tabpanel" aria-labelledby="pills-profile-tab2">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-outline mb-3">
-                        <input value="" type="password" name="password" class="form-control" />
+                    <div class="form-outline">
+                        <input value="" type="password" data-key-password class="form-control" />
                         <label class="form-label" for="form1">Old Password</label>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-outline mb-3">
-                        <input value="" type="password" name="newPassword" class="form-control" />
+                    <div class="form-outline">
+                        <input value="" type="password" data-key-newPassword class="form-control" />
                         <label class="form-label" for="form1">New Password</label>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-outline mb-3">
-                        <input value="" type="password" name="newPasswordConfirm" class="form-control" />
+                    <div class="form-outline">
+                        <input value="" type="password" data-key-newPasswordConfirm class="form-control" />
                         <label class="form-label" for="form1">New Password Confirm</label>
                     </div>
                 </div>
