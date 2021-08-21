@@ -50,10 +50,6 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        @* <div class="form-outline">
-                            <input value="@Model.Occupation" type="text" name="occupation" class="form-control" />
-                            <label class="form-label" for="form1"> Occupation </label>
-                        </div> *@
                         <select class="form-select text-dark mt-3" name="occupation">
                             <option selected disabled value=""> ---- select your occupation ---- </option>
                             @foreach (var job in jobList)
@@ -62,20 +58,18 @@
                                 {
                                     <option class="text-dark" value=@job selected> Occupation : @job </option>
                                 }
-                                <option class="text-dark" value=@job> Occupation : @job </option>
+                                else 
+                                {
+                                    <option class="text-dark" value=@job> Occupation : @job </option>
+                                }
                             }
                             <label class="form-label"> Occupation </label>
                         </select>
                     </div>
                     <div class="col-md-6">
-                        @* <div class="form-outline">
-                            <input value="@Model.Income" type="text" name="income" class="form-control" minlength="3" />
-                            <label class="form-label" for="form1">Income</label>
-                            </div> *@
                         <select class="form-select text-dark mt-3" name="income">
                             <option selected disabled value=""> ---- select your income ---- </option>
                             @{
-
                                 var income = 0;
                             }
                             @for (var i = 0; i < 40; i++)
@@ -85,8 +79,10 @@
                                 {
                                     <option class="text-dark" value=@income selected> income : @income </option>
                                 }
+                                else
+                                {
                                 <option class="text-dark" value=@income> income : @income </option>
-
+                                }
                             }
                         </select>
                     </div>

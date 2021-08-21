@@ -8,14 +8,14 @@
     })
 
     // From สมัครสมาชิก
-    $('#register_btn').click((e) => {
-        if (fullFormValidate() == true) {
+    $('#register_btn').click(async (e) => {
+        if (await fullFormValidate() === true) {
             Swal.fire({
                 icon: 'success',
                 title: 'Register successfully',
                 confirmButtonText: 'Go to home page',
                 confirmButtonColor: '#39c0ed',
-
+                
             })
             .then(() => $('#form_register').submit())
         }
@@ -213,7 +213,7 @@
         if (email.val() && !isEmailForm.test(email.val())) result = respError(email, 'รูปแบบอีเมล์ไม่ถูกต้อง')
 
         const tel = $('[name="telephone"]')
-        if(tel.val().length < 10) result = respError(tel, 'รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง')
+        if(tel.val() && tel.val().length < 10) result = respError(tel, 'รูปแบบเบอร์โทรศัพท์ไม่ถูกต้อง')
 
         //! ยืนยันรหัสผ่านไม่ตรง
         const pass = $('[name="password"]')
@@ -224,9 +224,6 @@
             result = respError(passConfirm, 'ยืนยันรหัสผ่านไม่ถูกต้อง')
         }
 
-        //! ต้องติ๊ก checkbox นะจ๊ะ
-        // if (!$('[type="checkbox"]').is(":checked")) return 'Please accept our condition'
-        
         if (result === true) {
             return result
         }
