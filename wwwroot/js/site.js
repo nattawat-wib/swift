@@ -85,7 +85,7 @@
             confirmButtonColor: '#39c0ed',
         }).then(res => {
             if (res.isConfirmed) {
-                $.post('https://localhost:4001/Admin/Delete', { id: user_id })
+                $.post('https://localhost:4001/Admin/Delete', {id: user_id})
                     .then(resp => {
                         Swal.fire({ title: resp.msg, icon: resp.status, confirmButtonColor: '#39c0ed' })
                             .then(() => { if (resp.status === 'success') location.reload() })
