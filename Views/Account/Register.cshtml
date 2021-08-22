@@ -4,15 +4,10 @@
 @model UserAccount
 @{
     string[] jobList = { "Computer Scientist","IT Professional","UX Designer & UI Developer","Frontend Developer","Backend Developer","SQL Developer","Web Designer","Web Developer","Help Desk Worker/Desktop Support","Software Engineer","Data Entry","DevOps Engineer","Computer Programmer","Network Administrator","Information Security Analyst","Artificial Intelligence Engineer","Cloud Architect","IT Manager","Technical Specialist","Application Developer","Chief Technology Officer (CTO)","Chief Information Officer (CIO)","Marketing Specialist","Marketing Manager","Marketing Director","Graphic Designer","Marketing Research Analyst","Marketing Communications Manager","Marketing Consultant","Product Manager","Public Relations","Social Media Assistant","Brand Manager","SEO Manager","Content Marketing Manager","Copywriter","Media Buyer","Digital Marketing Manager","eCommerce Marketing Specialist","Brand Strategist","Vice President of Marketing","Media Relations Coordinator","Administrative Assistant","Receptionist","Office Manager","Auditing Clerk","Bookkeeper","Account Executive","Branch Manager","Business Manager","Quality Control Coordinator","Administrative Manager","Chief Executive Officer","Business Analyst","Risk Manager","Human Resources","Office Assistant","Secretary","Office Clerk","File Clerk","Account Collector","Administrative Specialist","Executive Assistant","Program Administrator","Program Manager","Administrative Analyst","Data Entry","Team Leader","Manager","Assistant Manager","Executive","Director","Coordinator","Administrator","Controller","Officer","Organizer","Supervisor","Superintendent","Head","Overseer","Chief","Foreman","Controller","Principal","President","Lead" };
-
 }
 <main>
-    <!-- <form asp-action="RegisterAction">
-        <input asp-for="Username" name="Username" id="Username">
-        <input asp-for="Password" name="Password" id="Password">
-        <button class="btn btn-success" type="submit" placeholder="Register">
-    </form> -->
     <button id="testAPI"> test API </button>
+
     <h2 class="text-center mb-4">Register</h2>
     <form id="form_register" style="max-width: 900px" class="mx-auto" autocomplete="off"
         asp-controller="Account" method="post" asp-action="RegisterAction">
@@ -34,28 +29,25 @@
 
         <div class="row">
             <div class="col-md-6">
-                @* <input type="text" name="Occupation" class="form-control" />
-                    <label class="form-label"> Occupation </label> *@
-                <select class="form-select text-dark" name="occupation">
+                <select class="selectpicker form-control" name="occupation" data-live-search="true">
                     <option selected disabled value=""> ---- select your occupation ---- </option>
                     @foreach (var job in jobList)
                     {
-                        <option class="text-dark" value=@job> Occupation : @job </option>
+                        <option data-tokens="@job"> @job </option>
                     }
-                    <label class="form-label"> Occupation </label>
-                </select>
+                </select>                
             </div>
             <div class="col-md-6">
                 <select class="form-select text-dark" name="income">
                     <option selected disabled value=""> ---- select your income ---- </option>
                     @{
-                        var income = 0;
+                        var income = 10000;
                     }
 
                     @for (var i = 0; i < 40; i++)
                     {
-                        income = income + 5000;
                         <option class="text-dark" value=@income> income : @income </option>
+                        income = income + 5000;
                     }
                 </select>
             </div>
@@ -133,3 +125,4 @@
 
     <br>
 </main>
+

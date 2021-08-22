@@ -81,26 +81,25 @@
 
                     <div class="row row-space">
                         <div class="col-md-6">
-                            <select class="form-select text-dark" name="occupation">
+                            <select class="selectpicker form-control" name="occupation" data-live-search="true">
                                 <option selected disabled value=""> ---- select your occupation ---- </option>
                                 @foreach (var job in jobList)
                                 {
-                                    <option class="text-dark" value=@job> Occupation : @job </option>
+                                    <option data-tokens="@job"> @job </option>
                                 }
-                                <label class="form-label"> Occupation </label>
-                            </select>
+                            </select>           
                         </div>
                         <div class="col-md-6">
                             <select class="form-select text-dark" name="income">
                                 <option selected disabled value=""> ---- select your income ---- </option>
                                 @{
-                                    var income = 0;
+                                    var income = 10000;
                                 }
 
                                 @for (var i = 0; i < 40; i++)
                                 {
-                                    income = income + 5000;
                                     <option class="text-dark" value=@income> income : @income </option>
+                                    income = income + 5000;
                                 }
                             </select>                            
                         </div>

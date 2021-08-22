@@ -81,7 +81,7 @@ namespace Swift.Controllers
             if (verifyUser == null)
             {
                 jsonRespons.Status = "error";
-                jsonRespons.Msg = "username หรือ password ไม่ถูกต้อง";
+                jsonRespons.Msg = "username หรือ password <br> ไม่ถูกต้อง";
 
                 return Json(jsonRespons);
             }

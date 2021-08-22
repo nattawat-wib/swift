@@ -38,7 +38,7 @@ namespace Swift.Controllers
             if (user == null)
             {
                 jsonRespons.Status = "error";
-                jsonRespons.Msg = $"this user ID: {id} is not exist !!!!!";
+                jsonRespons.Msg = $"ไม่มีบัญชี ID: {id} อยู่ในระบบ !!!!!";
 
                 return Json(jsonRespons);
             }
@@ -47,7 +47,7 @@ namespace Swift.Controllers
             _context.SaveChanges();
 
             jsonRespons.Status = "success";
-            jsonRespons.Msg = $"delete user ID : {id} successfully";
+            jsonRespons.Msg = $"ลบบัญชี ID : {id} เรียบร้อยแล้ว";
 
             return Json(jsonRespons);
         }

@@ -76,8 +76,8 @@
         const { user_id, user_name } = $(this).data()
 
         Swal.fire({
-            title: 'Delete Account ?',
-            html: `Are you sure you want to delete this account <br> <b> id : </b> ${user_id} <br> <b> name : </b> ${user_name}`,
+            title: 'ลบบัญชี?',
+            html: `คุณแน่ใจว่าต้องการลบผู้ใช้บัญชีที่ <br> <b> id : </b> ${user_id} <br> <b> username : </b> ${user_name}`,
             icon: 'warning',
             showDenyButton: true,
             confirmButtonText: '<i class="fas fa-check-circle"></i> CONFIRM',
@@ -102,13 +102,14 @@
         $('[name="id"]').val(id)
         $('[name="username"]').val(name)
         $('[name="email"]').val(email)
-        $(`[value="${occupation}"]`).attr('selected', true)
+        $('.selectpicker').selectpicker('val', occupation);
         $(`[value="${income}"]`).attr('selected', true)
         $('[name="telephone"]').val(telephone)
         $('[name="address"]').val(address)
         $('[name="facebook"]').val(facebook)
         $('[name="ig"]').val(ig)
         $('[name="dateOfBirth"]').val(dateofbirth)
+        setTimeout(()=> $('.bootstrap-select').click(), 3000)
     })
 
     $('.update-user').click(async (e) => {
@@ -269,6 +270,8 @@
             })
     })
 
-
+    $('.selectpicker').selectpicker({
+        noneResultsText: 	'ไม่พบผลการค้นหา {0}',
+    });
 })
 
