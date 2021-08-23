@@ -85,3 +85,8 @@ select.invalid {
 select.valid {
   border: 1px solid #00b74a !important;
 }
+
+tbody, td, tfoot, th, thead, tr, table.dataTable.no-footer {
+  border: none;
+  border-bottom: none;
+}

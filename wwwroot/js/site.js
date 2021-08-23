@@ -259,7 +259,7 @@
 
     //! check pk
     $('[data-validate-pk]').keyup(function () {
-        $.post('https://localhost:4001/Account/IsUsernameExist', { value: $(this).val() })
+        $.post('https://localhost:4001/Account/IsUsernameExist', { value: $(this).val().trim() })
             .then(resp => {
                 if (!resp) {
                     $(this).removeClass('valid')
@@ -273,5 +273,8 @@
     $('.selectpicker').selectpicker({
         noneResultsText: 	'ไม่พบผลการค้นหา {0}',
     });
+
+    console.log($('#user-data-table'))
+    $('#user-data-table').DataTable();
 })
 

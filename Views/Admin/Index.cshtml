@@ -10,9 +10,11 @@
 @model IEnumerable<Swift.Models.UserAccount>
 <main>
     <h2 class="text-center"> All users </h2>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <tr class="bg-info text-light h6 fw-bold">
+    <div class="table-responsive my-4">
+        <table id="user-data-table" class="table table-striped table-hover w-100">
+            <thead>
+                
+            <tr class="bg-info text-light h6 fw-bold text-nowrap border-0">
                 <td>Id</td>
                 <td>Name</td>
                 <td>Email</td>
@@ -22,10 +24,12 @@
                 <td>Address</td>
                 <td>Action</td>
             </tr>
+            </thead>
+            <tbody>
 
             @foreach (var item in Model)
             {
-                <tr class="text-nowrap">
+                <tr class="text-nowrap border-0">
                     <td class="fw-semi-bold w-25">@item.UserId</td>
                     <td class="fw-semi-bold w-100">@item.Username</td>
                     <td class="fw-semi-bold w-100">@item.Email</td>
@@ -45,6 +49,7 @@
                 </tr>
 
             }
+            </tbody>
         </table>
     </div>
     <div class="text-end">
@@ -156,3 +161,4 @@
             </div>
         </div>
     </div>
+
