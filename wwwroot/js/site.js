@@ -275,6 +275,7 @@
     });
 
     console.log($('#user-data-table'))
-    $('#user-data-table').DataTable();
+    $('#user-data-table').DataTable({"dom": 'f'});
 })
 
+s

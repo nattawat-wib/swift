@@ -90,3 +90,7 @@ tbody, td, tfoot, th, thead, tr, table.dataTable.no-footer {
   border: none;
   border-bottom: none;
 }
+
+.dataTables_filter {
+  margin-bottom: 15px;
+}
